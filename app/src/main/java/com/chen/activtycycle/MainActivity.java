@@ -19,7 +19,9 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Button clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, ActivitySecond.class);
+                intent.putExtra("name", "xxxxxxxx");
+                startActivity(intent);
             }
         });
     }
