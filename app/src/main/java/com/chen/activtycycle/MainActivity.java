@@ -25,9 +25,36 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onClick:");
                 Intent intent = new Intent(MainActivity.this, ActivitySecond.class);
                 intent.putExtra(BOOK_NAME_CATEGORY_PHISICAL, editText.getText().toString());
-                startActivity(intent);
+                startActivityForResult(intent,0);
             }
         });
+
+        Button mThirdButton = (Button)findViewById(R.id.third_button);
+        mThirdButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ThirdActivity.class);
+                startActivityForResult(intent,1);
+            }
+        });
+
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        String name = "";
+        switch (requestCode){
+            case 0:
+                name = data.getStringExtra("back");
+                break;
+            case 1:
+                name = data.getStringExtra("thirdBack");
+                break;
+        }
+
+
+        Toast.makeText(MainActivity.this, name, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -46,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Log.d(TAG, "onPause: 执行了");
-        
+
     }
 
     @Override
